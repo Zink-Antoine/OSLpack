@@ -13,10 +13,13 @@
 #' @param signal.integral [vector] (*with default*): vector with the limits for the signal integral.
 #' @param background.integral [vector] (*with default*): vector with the bounds for the background integral.
 #'
-#' @return
+#' @return a list object with the following items
+#' @return $S [data.frame] efficiency S=Lx/Tx values with uncertainties
+#' @return $alpha [logical] True if alpha measurements included
+#' @return $Lum [matrix] OSL data
+#'
 #' @export
 #'
-#' @examples
 `Sn` <-
 function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
          TypLum=c("LIR","LBL","TIR","TBL"),
@@ -40,7 +43,7 @@ function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
 
 	cycle0<-2*2 #IRSL+BLSL*{Lx,Tx}
 	cycleSAR<-cycle0*nbCycle #ph+IRSL+BLSL*{Lx,Tx}*{nat,b1,b2,b3,0,b1[,a]}
-	aliquot<-length(ph0) #{250?C,275?C,300?C,325?C}
+	aliquot<-length(ph0) #{250°C,275°C,300°C,325°C}
 	nech<-L/(aliquot*cycleSAR)
 	nbd<-aliquot*nech
 

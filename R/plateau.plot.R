@@ -1,8 +1,10 @@
 #' plateau.plot
 #'
-#' @param Results
-#' @param alpha
-#' @param Dose
+#' plot a preheat plateau test
+#'
+#' @param Results [list] (**required**) WinBUGS simulation result
+#' @param alpha [logical] (**with default**)) True if alpha measurements included
+#' @param Dose [numeric] or [list] (**required**): doses in seconds
 #'
 #' @return
 #' @export

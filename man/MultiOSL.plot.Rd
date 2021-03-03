@@ -4,13 +4,34 @@
 \alias{MultiOSL.plot}
 \title{MultiOSL.plot}
 \usage{
-MultiOSL.plot(file = file, ech = 1, OSL = 2, Dose = c(0, 30, 50, 70, 0,
-  30), nom = nomFile, ph0 = seq(1, 4), NomEch = c(ech1 = "ech1", ech2 =
-  "ech2", ech3 = "ech3", ech4 = "ech4"))
+MultiOSL.plot(
+  file = file,
+  ech = 1,
+  OSL = 2,
+  Dose = c(0, 30, 50, 70, 0, 30),
+  nom = nomFile,
+  ph0 = seq(1, 4),
+  NomEch = c(ech1 = "ech1", ech2 = "ech2", ech3 = "ech3", ech4 = "ech4")
+)
 }
 \arguments{
-\item{NomEch}{}
+\item{file}{[Risoe.BINfileData-class] or [list] (**required**): BIN/BINX file}
+
+\item{ech}{[numeric] (**with default**): sample number}
+
+\item{OSL}{[numeric] (**with default**): 1: IR-OSL; 2: BL-OSL}
+
+\item{Dose}{[numeric] or [list] (**with default**): doses in seconds}
+
+\item{nom}{[string] (**required**) name of the BIN/BINX file}
+
+\item{ph0}{[numeric] (**with default**): selected preheat}
+
+\item{NomEch}{[string] (**with default**) name of the sample (eg. reference number)}
+}
+\value{
+
 }
 \description{
-MultiOSL.plot
+OSL glowcurve for various preheat
 }

@@ -4,10 +4,18 @@
 \alias{analyse.plot}
 \title{analyse.plot}
 \usage{
-analyse.plot(file = file, nom = nomFile, ech = 1, OSL = 2, Dose = c(0,
-  30, 50, 70, 0, 30), Unique = FALSE, ph0 = seq(1, 4), NomEch = c(ech1 =
-  "ech1", ech2 = "ech2", ech3 = "ech3", ech4 = "ech4"),
-  signal.integral = seq(6, 10), background.integral = seq(85, 104))
+analyse.plot(
+  file = file,
+  nom = nomFile,
+  ech = 1,
+  OSL = 2,
+  Dose = c(0, 30, 50, 70, 0, 30),
+  Unique = FALSE,
+  ph0 = seq(1, 4),
+  NomEch = c(ech1 = "ech1", ech2 = "ech2", ech3 = "ech3", ech4 = "ech4"),
+  signal.integral = seq(6, 10),
+  background.integral = seq(85, 104)
+)
 }
 \arguments{
 \item{file}{Risoe.BINfileData-class (required): BIN/BINX file}
@@ -29,6 +37,9 @@ analyse.plot(file = file, nom = nomFile, ech = 1, OSL = 2, Dose = c(0,
 \item{signal.integral}{vector (with default): vector with the limits for the signal integral.}
 
 \item{background.integral}{vector (with default): vector with the bounds for the background integral.}
+}
+\value{
+
 }
 \description{
 analyse.plot

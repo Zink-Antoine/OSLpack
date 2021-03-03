@@ -4,9 +4,14 @@
 \alias{analyse.page}
 \title{fonction affichant une page d'analyse}
 \usage{
-analyse.page(File = File, ech = seq(1, 2), Dose = c(0, 30, 50, 70, 0, 30),
-  ph0 = seq(1, 4), NomEch = c(ech1 = "ech1", ech2 = "ech2", ech3 = "ech3",
-  ech4 = "ech4"), Unique = FALSE)
+analyse.page(
+  File = File,
+  ech = seq(1, 2),
+  Dose = c(0, 30, 50, 70, 0, 30),
+  ph0 = seq(1, 4),
+  NomEch = c(ech1 = "ech1", ech2 = "ech2", ech3 = "ech3", ech4 = "ech4"),
+  Unique = FALSE
+)
 }
 \arguments{
 \item{File}{fichier Bin}

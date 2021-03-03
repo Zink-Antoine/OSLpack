@@ -2,11 +2,16 @@
 
 #' BayesCal
 #'
-#' @param Sn
-#' @param ph
-#' @param debug
+#' De calculation using gibbs sampler (WinBUGS code call)
 #'
-#' @return
+#'
+#' @param Sn [list] (**required**) efficiencies S table (see Sn function)
+#' @param ph  [numeric] (**required**): selected preheat
+#' @param debug [logical] (**required**) TRUE debug the WinBug code
+#'
+#'
+#' @return WinBUGS simulation results (see R2WinBUGS::bugs help page)
+#'
 #' @import R2WinBUGS
 #' @import rv
 #'

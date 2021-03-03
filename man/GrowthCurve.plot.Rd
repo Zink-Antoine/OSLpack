@@ -7,8 +7,19 @@
 GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug)
 }
 \arguments{
-\item{debug}{}
+\item{Sn}{[list] efficiencies S table (see Sn function)}
+
+\item{ph0}{[numeric] (**with default**): selected preheat}
+
+\item{Unique}{[logical]  (**with default**)  TRUE a single De, independent from preheat temperature}
+
+\item{debug}{[logical] (**required**) TRUE debug the WinBug code}
+}
+\value{
+several plots
+
+WinBUg results objects
 }
 \description{
-GrowthCurve.plot
+growthcurve plot at various preheat temperatures
 }

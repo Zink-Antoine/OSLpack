@@ -9,7 +9,7 @@
 Various functions to analyze and plot OSL measurements using Bayesian approach (BUGS code)
 }
 \author{
-\strong{Maintainer}: Antoine Zink \email{antoine.zink@culture.gouv.fr} (https://orcid.org/0000-0001-7146-1101)
+\strong{Maintainer}: Antoine Zink \email{antoine.zink@culture.gouv.fr} (\href{https://orcid.org/0000-0001-7146-1101}{ORCID})
 
 }
 \keyword{internal}

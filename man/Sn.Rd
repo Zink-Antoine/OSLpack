@@ -4,10 +4,17 @@
 \alias{Sn}
 \title{Sn}
 \usage{
-Sn(file, ech, OSL, Dose = c(0, 50, 80, 110, 0, 50), TypLum = c("LIR", "LBL",
-  "TIR", "TBL"), Temp = c("250°C", "275°C", "300°C", "325°C"),
-  ph0 = seq(1, 4), signal.integral = seq(6, 10),
-  background.integral = seq(85, 104))
+Sn(
+  file,
+  ech,
+  OSL,
+  Dose = c(0, 50, 80, 110, 0, 50),
+  TypLum = c("LIR", "LBL", "TIR", "TBL"),
+  Temp = c("250°C", "275°C", "300°C", "325°C"),
+  ph0 = seq(1, 4),
+  signal.integral = seq(6, 10),
+  background.integral = seq(85, 104)
+)
 }
 \arguments{
 \item{file}{[Risoe.BINfileData-class] or [list] (*required*): BIN/BINX file}
@@ -27,6 +34,15 @@ Sn(file, ech, OSL, Dose = c(0, 50, 80, 110, 0, 50), TypLum = c("LIR", "LBL",
 \item{signal.integral}{[vector] (*with default*): vector with the limits for the signal integral.}
 
 \item{background.integral}{[vector] (*with default*): vector with the bounds for the background integral.}
+}
+\value{
+a list object with the following items
+
+$S [data.frame] efficiency S=Lx/Tx values with uncertainties
+
+$alpha [logical] True if alpha measurements included
+
+$Lum [matrix] OSL data
 }
 \description{
 determines the sensitivity values for OSL

@@ -7,8 +7,15 @@
 plateau.plot(Results, alpha = TRUE, Dose)
 }
 \arguments{
-\item{Dose}{}
+\item{Results}{[list] (**required**) WinBUGS simulation result}
+
+\item{alpha}{[logical] (**with default**)) True if alpha measurements included}
+
+\item{Dose}{[numeric] or [list] (**required**): doses in seconds}
+}
+\value{
+
 }
 \description{
-plateau.plot
+plot a preheat plateau test
 }

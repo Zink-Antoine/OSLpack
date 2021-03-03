@@ -7,8 +7,15 @@
 BayesCal(Sn, ph, debug)
 }
 \arguments{
-\item{debug}{}
+\item{Sn}{[list] (**required**) efficiencies S table (see Sn function)}
+
+\item{ph}{[numeric] (**required**): selected preheat}
+
+\item{debug}{[logical] (**required**) TRUE debug the WinBug code}
+}
+\value{
+WinBUGS simulation results (see R2WinBUGS::bugs help page)
 }
 \description{
-BayesCal
+De calculation using gibbs sampler (WinBUGS code call)
 }

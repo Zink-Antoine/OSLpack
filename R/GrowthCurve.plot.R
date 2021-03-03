@@ -1,11 +1,15 @@
 #' GrowthCurve.plot
 #'
-#' @param Sn
-#' @param ph0
-#' @param Unique
-#' @param debug
+#'growthcurve plot at various preheat temperatures
 #'
-#' @return
+#' @param Sn [list] efficiencies S table (see Sn function)
+#' @param ph0  [numeric] (**with default**): selected preheat
+#' @param Unique [logical]  (**with default**)  TRUE a single De, independent from preheat temperature
+#' @param debug [logical] (**required**) TRUE debug the WinBug code
+#'
+#' @return several plots
+#' @return WinBUg results objects
+#'
 #' @export
 #'
 #' @examples
@@ -17,7 +21,7 @@ debug<-FALSE
 Results<-alist(a=,b=,c=,d=)
 ph.nom<-c("250?C","275?C","300?C","325?C")[ph0]
 
-if (!Unique){#mesure d'une De pour chaque pr?chauffe
+if (!Unique){#a De for each preheat
 	for (ph in 1:length(ph0)){
 		Cal.sim<<-BayesCal(Sn,ph,debug)
 		print(Cal.sim)
@@ -52,12 +56,12 @@ if (!Unique){#mesure d'une De pour chaque pr?chauffe
 		}
 	}
 
-	else {#De unique pour les pr?chauffes s?lectionn?es
+	else {# a single De
 
 	Cal.sim<-BayesCal(Sn,ph0,debug)
 	print(Cal.sim)
 	for (ph in 1:length(ph0)){
-		k<-seq(5*(ph-1)+1,5*(ph-1)+5)#indice des pr?chauffes concern?es
+		k<-seq(5*(ph-1)+1,5*(ph-1)+5)#preheat number
 
 		if (!Sn$alpha){
 			plot(mu.X[seq((ph-1)*5+1,ph*5)],mu.Y[seq((ph-1)*5+1,ph*5)],ylim=c(-0.02,max(mu.Y[seq((ph-1)*5+1,ph*5)])*1.2),ylab="Sn",xlab="Dose (s beta)")
@@ -80,8 +84,6 @@ if (!Unique){#mesure d'une De pour chaque pr?chauffe
 		points.rv(mu.X[k],mu.Y[k],col=2)
 		points.rv(0, yn,rvcol="red")
 		points.rv(xn, 0,col=4)
-
-
 
 		text(5,max(mu.Y)*1.1,ph.nom[ph],cex=1,adj=0)
 		x0text<- paste("x0 = ",round(Cal.sim$mean$X0,1),"(",round(Cal.sim$sd$X0,1),")")
