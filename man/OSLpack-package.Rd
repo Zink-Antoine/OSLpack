@@ -6,7 +6,7 @@
 \alias{OSLpack-package}
 \title{OSLpack: Analyze OSL using Bayesian}
 \description{
-Various functions to analyze and plot OSL measurements using Bayesian approach (BUGS code)
+OSLpack gathers various functions to analyze and plot OSL measurements using the Bayesian approach through the BUGS code.
 }
 \author{
 \strong{Maintainer}: Antoine Zink \email{antoine.zink@culture.gouv.fr} (\href{https://orcid.org/0000-0001-7146-1101}{ORCID})

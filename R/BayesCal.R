@@ -9,15 +9,13 @@
 #' @param ph  [numeric] (**required**): selected preheat
 #' @param debug [logical] (**required**) TRUE debug the WinBug code
 #'
-#'
 #' @return WinBUGS simulation results (see R2WinBUGS::bugs help page)
 #'
 #' @import R2WinBUGS
 #' @import rv
-#'
+#' @importFrom stats lm var
 #' @export
 #'
-#' @examples
 `BayesCal` <-
 function(Sn,ph,debug) #appel Bug
 	{
@@ -126,36 +124,34 @@ function(Sn,ph,debug) #appel Bug
 		aliquot<-c(aliquot,seq(j[i],j[i]+4))
 	}
 	aliquot<-aliquot[-1]
-	l<<-length(ph)
+	l<-length(ph)
 
 
-	mu.Y <<- DataEch$meanY[aliquot];
-	t.Y<<-1/DataEch$sdY[aliquot]^2;
-	mu.X <<- DataEch$meanX[aliquot];
-	t.X<<-1/DataEch$sdX[aliquot]^2;
-	mu.Y0 <<- c(DataEch$meanY0[ph],NA);#NA permet que l'indice soit sup?rieur ou ?gal ? 2
-	t.Y0<<-c(1/DataEch$sdY0[ph]^2,NA);
-	mu.Ya <<- c(DataEch$meanYa[ph],NA);
-	t.Ya<<-c(1/DataEch$sdYa[ph]^2,NA);
-	mu.X0<<-mean(mu.X[mu.X!=0])
-	wX0<<-range(mu.X[mu.X!=0])
- 	t.X0<<-12/(max(wX0)-min(wX0))^2
-	mu.Xba<<-2*mu.X0
-	wXba<<-range(mu.X[mu.X!=0])
- 	t.Xba<<-12/(2*max(wX0)-min(wX0))^2
+	mu.Y <- DataEch$meanY[aliquot];
+	t.Y<-1/DataEch$sdY[aliquot]^2;
+	mu.X<-DataEch$meanX[aliquot];
+	t.X<-1/DataEch$sdX[aliquot]^2;
+	mu.Y0 <- c(DataEch$meanY0[ph],NA);#NA permet que l'indice soit sup?rieur ou ?gal ? 2
+	t.Y0<-c(1/DataEch$sdY0[ph]^2,NA);
+	mu.Ya <- c(DataEch$meanYa[ph],NA);
+	t.Ya<-c(1/DataEch$sdYa[ph]^2,NA);
+	mu.X0<-mean(mu.X[mu.X!=0])
+	wX0<-range(mu.X[mu.X!=0])
+ 	t.X0<-12/(max(wX0)-min(wX0))^2
+	mu.Xba<-2*mu.X0
+	wXba<-range(mu.X[mu.X!=0])
+ 	t.Xba<-12/(2*max(wX0)-min(wX0))^2
 
-	Prior<<-summary(lm(mu.Y~mu.X))$coefficients #coeff ?valu? par linear model
-	Prior<<-list(muN0=Prior[1],tN0=1/Prior[3]^2,muM0=Prior[2],tM0=1/Prior[4]^2)	#y=M0.x + N0 l'ordre alphab?tique joue un r?le dans le mod?le Bay?sien
-	attach(Prior)
-	mu.N0<<-muN0
-	t.N0<<-tN0
-	mu.M0<<-muM0
-	t.M0<<-tM0
-	detach(Prior)
+	Prior<-summary(lm(mu.Y~mu.X))$coefficients #coeff ?valu? par linear model
+
+	mu.N0<-Prior[1]
+	t.N0<-1/Prior[3]^2
+	mu.M0<-Prior[2]
+	t.M0<-1/Prior[4]^2
 
 	if (l==1){
-		a<<-5.5 #2.15
-		b<<-0.001 #0.0367
+		a<-5.5 #2.15
+		b<-0.001 #0.0367
 		}
 	else {
 	my<-rep(0,5)
@@ -170,10 +166,10 @@ function(Sn,ph,debug) #appel Bug
 		sigy[j]<-summary(lm(my~mx))$sigma
 	}
 
-	n0<<-2*mean(sigy^2)^2/var(sigy^2)+4
-	S0<<-(n0-2)*mean(sigy^2)/n0
-	a<<-n0/2
-	b<<-n0*S0/2
+	n0<-2*mean(sigy^2)^2/var(sigy^2)+4
+	S0<-(n0-2)*mean(sigy^2)/n0
+	a<-n0/2
+	b<-n0*S0/2
 	}
 
 	data <- c("l","mu.Y0","t.Y0","mu.X","t.X","mu.Y","t.Y","mu.N0","t.N0","mu.M0","t.M0","mu.X0","t.X0","a","b")
@@ -189,14 +185,11 @@ function(Sn,ph,debug) #appel Bug
 		data <- c(data,"mu.Ya","t.Ya","mu.Xba","t.Xba")
 		parameters <- c(parameters,"Xba")}
 
-	#simulation
-	#retour<-list(model=model.file,alpha=alpha,filename=filename,data=data)
-	#return(retour)
 	Cal.sim <- bugs(data, parameters, inits=NULL, model.file,
     	n.chains=1, n.iter=50000,codaPkg=FALSE,n.thin=5, n.burnin=25000,
     	bugs.directory="c:/Program Files/WinBUGS14/",debug=debug)
 
-
+  Results<-list(mu.X=mu.X,mu.Y=mu.Y,mu.Y0=mu.Y0,t.Y0=t.Y0,mu.Ya=mu.Ya,t.Ya=t.Ya,Cal.sim=Cal.sim)
 	}
 
 

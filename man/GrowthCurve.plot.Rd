@@ -16,10 +16,10 @@ GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug)
 \item{debug}{[logical] (**required**) TRUE debug the WinBug code}
 }
 \value{
-several plots
+a plot
 
-WinBUg results objects
+WinBUg results object
 }
 \description{
-growthcurve plot at various preheat temperatures
+growthcurve plot at a single preheat temperature
 }

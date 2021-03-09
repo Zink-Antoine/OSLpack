@@ -7,20 +7,23 @@
 #' @param ech [numeric] (**with default**): sample number
 #' @param OSL [numeric] (**with default**): 1: IR-OSL; 2: BL-OSL
 #' @param Dose [numeric] or [list] (**with default**): doses in seconds
-#' @param nom [string] (**required**) name of the BIN/BINX file
+#' @param nom [string] (**optional**) name of the BIN/BINX file
 #' @param ph0 [numeric] (**with default**): selected preheat
 #' @param NomEch [string] (**with default**) name of the sample (eg. reference number)
 #'
-#' @return
+#' @return a page with multiplot
+#'
+#' @importFrom graphics axis box lines par plot.default text title
+#'
 #' @export
 #'
 `MultiOSL.plot` <-
-function(file=file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom=nomFile,ph0=seq(1,4),NomEch=c(ech1="ech1",ech2="ech2",ech3="ech3",ech4="ech4")) #
+function(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom="nomFile",ph0=seq(1,4),NomEch=c(ech1="ech1",ech2="ech2",ech3="ech3",ech4="ech4")) #
 	{
 
 	L<-Sn(file=file,ech=ech,OSL=OSL,Dose=Dose)$Lum
-	cycle<-length(L)/16 # 6 sans alpha et 7 avec alpha num?rateur = 24 si ph et 16 sans ph
-	ph.nom<-c("250?C","275?C","300?C","325?C")
+	cycle<-length(L)/16 # 6 without alpha et 7 with alpha, numerator = 24 with ph et 16 without ph
+	ph.nom<-paste(c("250","275","300","325"),"\U00B0","C",sep="")
 	typOSL<-switch(OSL,"IR-","BL-")
 	typOSL2<-switch(OSL,"IRSL","OSL")
 	nomEch<-switch(ech,NomEch[1],NomEch[2],NomEch[3],NomEch[4])
@@ -29,8 +32,8 @@ function(file=file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom=nomFile,ph0=seq(1,4),
 	par(fig=c(0,1,0.8,1),mar=c(0,1,1,1))
 	plot.default(c(0,100), c(0,10), type="n", axes=FALSE,ylab="", xlab="")
 	text(50,8,paste("Courbes de ",typOSL,"OSL", nomEch))
-	text(10,5,"en rouge, la courbe correspondant au signal arch?ologique",cex=0.7,adj=0)
-	text(10,3,"la mesure dure 110s, la simulation optique d?marre au bout de 5s et dure 100s",cex=0.7,adj=0)
+	text(10,5,"en rouge, la courbe correspondant au signal naturel",cex=0.7,adj=0)
+	text(10,3,"la mesure dure 110s, la simulation optique commence au bout de 5s et dure 100s",cex=0.7,adj=0)
 
 	x<-c(0.45,0)
 	y<-c(0.4,0)
@@ -52,7 +55,7 @@ function(file=file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom=nomFile,ph0=seq(1,4),
 		axis(1,tcl=-0.2,padj=-2,cex.axis=0.7)
 		axis(2,tcl=-0.2,padj=2,cex.axis=0.7)
 		box()
-		title(xlab="dur?e stimulation (s)",ylab="luminescence (cps)",cex.lab=0.7,line=0.7)
+		title(xlab="stimulation (s)",ylab="luminescence (cps)",cex.lab=0.7,line=0.7)
 		text(80,max(max(Y1),max(unlist(Y2)))*0.9,ph.nom[j],cex=1,adj=0)
 
 		}

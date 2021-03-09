@@ -4,17 +4,17 @@
 \alias{plateau.plot}
 \title{plateau.plot}
 \usage{
-plateau.plot(Results, alpha = TRUE, Dose)
+plateau.plot(Figures, alpha = TRUE, Dose)
 }
 \arguments{
-\item{Results}{[list] (**required**) WinBUGS simulation result}
+\item{Figures}{[list] (**required**) WinBUGS simulation result}
 
 \item{alpha}{[logical] (**with default**)) True if alpha measurements included}
 
 \item{Dose}{[numeric] or [list] (**required**): doses in seconds}
 }
 \value{
-
+a plot of a preheat plateau test
 }
 \description{
 plot a preheat plateau test

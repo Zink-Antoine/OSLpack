@@ -23,7 +23,7 @@
 `Sn` <-
 function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
          TypLum=c("LIR","LBL","TIR","TBL"),
-         Temp=c("250°C","275°C","300°C","325°C"),
+         Temp=c("250","275","300","325"),
          ph0=seq(1,4),
          signal.integral=seq(6,10),
          background.integral=seq(85,104))
@@ -43,7 +43,7 @@ function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
 
 	cycle0<-2*2 #IRSL+BLSL*{Lx,Tx}
 	cycleSAR<-cycle0*nbCycle #ph+IRSL+BLSL*{Lx,Tx}*{nat,b1,b2,b3,0,b1[,a]}
-	aliquot<-length(ph0) #{250°C,275°C,300°C,325°C}
+	aliquot<-length(ph0) # number of preheating temperatures
 	nech<-L/(aliquot*cycleSAR)
 	nbd<-aliquot*nech
 
@@ -72,7 +72,7 @@ function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
 		Tx<-B[irrx[2],,ech,j]
 		try(if(unique(lengths(Lx))<max(background.integral)) stop("background.integral out of bound"))
 
-		llx<<-Lx
+		llx<-Lx
 		for (i in 1:nbCycle){
 			S<-(sum(Lx[[i]][signal.integral])-(sum(Lx[[i]][background.integral]))/BgSg_ratio)/(sum(Tx[[i]][signal.integral])-(sum(Tx[[i]][background.integral]))/BgSg_ratio)
 			if (i==1){Sn$meanY0[j]<-S; Sn$sdY0[j]<-S*0.01}

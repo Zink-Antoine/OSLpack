@@ -15,7 +15,7 @@
 #' @importFrom tcltk tk_choose.dir
 #' @export
 #'
-#' @examples
+
 ReadFile<-function(list="liste fichier.txt"
 ,n=1) {
 
@@ -24,7 +24,7 @@ Dir<-tk_choose.dir(getwd(), "Choose a suitable folder")
 setwd(Dir)
 
 #print the file list
-Liste<<-readLines(list)
+Liste<-readLines(list)
 print(Liste)
 
 #select n file(s)

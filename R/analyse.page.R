@@ -6,6 +6,8 @@
 #' @param ph0 prechauffe
 #' @param NomEch nom de l echantillon
 #' @param Unique TRUE si la dose equivalente est independant des prechauffe
+#'
+#' @importFrom grDevices dev.off png
 `analyse.page` <-
 function(File=File,ech=seq(1,2),Dose=c(0,30,50,70,0,30),ph0=seq(1,4),NomEch=c(ech1="ech1",ech2="ech2",ech3="ech3",ech4="ech4"),Unique=FALSE) {
 	file<-File$FILE

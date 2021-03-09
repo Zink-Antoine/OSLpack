@@ -10,7 +10,7 @@ Sn(
   OSL,
   Dose = c(0, 50, 80, 110, 0, 50),
   TypLum = c("LIR", "LBL", "TIR", "TBL"),
-  Temp = c("250°C", "275°C", "300°C", "325°C"),
+  Temp = c("250", "275", "300", "325"),
   ph0 = seq(1, 4),
   signal.integral = seq(6, 10),
   background.integral = seq(85, 104)

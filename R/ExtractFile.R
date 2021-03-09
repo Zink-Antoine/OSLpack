@@ -9,7 +9,6 @@
 #' @return The Risoe.BINfileData-class object is rewritten to take into account only the data included in the sequence
 #' @export
 #'
-#' @examples
 ExtractFile<-function(files,n_file=1,sequence){
 #extract data from a Risoe.BINfileData-class object
 if (class(files[[n_file]])!="Risoe.BINfileData") {stop("invalid 'files' class")}
