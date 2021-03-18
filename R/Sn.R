@@ -21,7 +21,8 @@
 #' @export
 #'
 `Sn` <-
-function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
+function(file,ech,OSL,
+         Dose=c(0,50,80,110,0,50),
          TypLum=c("LIR","LBL","TIR","TBL"),
          Temp=c("250","275","300","325"),
          ph0=seq(1,4),
@@ -30,7 +31,7 @@ function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
 	{
 
 	alpha<-FALSE
-	nbCycle<-6
+	nbCycle<-length(Dose)
 	B1<-file[[1]]@DATA[file[[1]]@METADATA$LTYPE!="TL"]
 	L<-length(B1)
 
@@ -38,7 +39,7 @@ function(file,ech,OSL,Dose=c(0,50,80,110,0,50),
 		alpha<-TRUE
 		B2<-file[[2]]@DATA[file[[2]]@METADATA$LTYPE!="TL"]
 		L<-L+length(B2)
-		nbCycle<-nbCycle+1
+	#	nbCycle<-nbCycle+1
 		}
 
 	cycle0<-2*2 #IRSL+BLSL*{Lx,Tx}
