@@ -1,35 +1,34 @@
 #####################################Function BayesCal################################################
-
 #' BayesCal
 #'
 #' De calculation using gibbs sampler (WinBUGS code call)
 #'
-#'
+#' @inheritParams R2WinBUGS::bugs
 #' @param Sn [list] (**required**) efficiencies S table (see Sn function)
 #' @param ph  [numeric] (**required**): selected preheat
-#' @param debug [logical] (**required**) TRUE debug the WinBug code
+#' @param n.chains [numeric] (**with default value**) number of Markov chains (default: 1)
 #'
 #' @return WinBUGS simulation results (see R2WinBUGS::bugs help page)
 #'
-#' @import R2WinBUGS
-#' @import rv
-#' @importFrom stats lm var
 #' @export
 #'
+#' @examples
+#' data(Anatolian2, envir = environment())
+#' file<-Anatolian2$FILE
+#'
+#'\dontrun{
+#' ## You may need to edit "bugs.directory",
+#' ## also you need write access in the working directory:
+#' BayesCal(Sn(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30)),c(1,2,3,4),TRUE)
+#' }
+#'
 `BayesCal` <-
-function(Sn,ph,debug) #appel Bug
+function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chains * (n.iter-n.burnin) / 1000)), n.burnin=n.iter/2,
+         bugs.directory="c:/Program Files/WinBUGS14/",debug=FALSE) #appel Bug
 	{
-	#rev. 26-nov-2015 possibilit? d'adapter ? l'absence d'alpha
 
-	### version alternative avec alpha ##################
+	### version with alpha ##################
 	ModelBayesCala <- function(){
-	#(c) Antoine Zink 24-Fev-2014
-	#calibration SAR 4 aliquote (=preheat)
-
-	#rev. 19-mars-2014 introduction des alpha
-	#rem 3-juil-2014 -1  Y0 et Ya ne prennent pas en compte tau (cela semble difficile ? introduire et sans doute inutile),
-	#rev 3-juil-2014 -2 tau est adapt? aux donn?es
-	#rev. 14-jan-2015 adapt? ? windows7
 
 	#prior
 	X0 ~ dnorm(mu.X0,t.X0)
@@ -61,17 +60,10 @@ function(Sn,ph,debug) #appel Bug
    		mu.Ya[j]~dnorm(Ya[j],t.Ya[j])
 		}
 	}
-	##### fin version alternative #######################
+	##### end alternative version #######################
 
 
 	ModelBayesCal <- function(){
-	#(c) Antoine Zink 24-Fev-2014
-	#calibration SAR 4 aliquote (=preheat)
-
-	#rev. 19-mars-2014 introduction des alpha
-	#rem 3-juil-2014 -1  Y0 et Ya ne prennent pas en compte tau (cela semble difficile ? introduire et sans doute inutile),
-	#rev 3-juil-2014 -2 tau est adapt? aux donn?es
-	#rev. 14-jan-2015 adapt? ? windows7
 
 	#prior
 	X0 ~ dnorm(mu.X0,t.X0)
@@ -131,7 +123,7 @@ function(Sn,ph,debug) #appel Bug
 	t.Y<-1/DataEch$sdY[aliquot]^2;
 	mu.X<-DataEch$meanX[aliquot];
 	t.X<-1/DataEch$sdX[aliquot]^2;
-	mu.Y0 <- c(DataEch$meanY0[ph],NA);#NA permet que l'indice soit sup?rieur ou ?gal ? 2
+	mu.Y0 <- c(DataEch$meanY0[ph],NA);#NA permits that the index was superior or equal to 2
 	t.Y0<-c(1/DataEch$sdY0[ph]^2,NA);
 	mu.Ya <- c(DataEch$meanYa[ph],NA);
 	t.Ya<-c(1/DataEch$sdYa[ph]^2,NA);
@@ -142,7 +134,7 @@ function(Sn,ph,debug) #appel Bug
 	wXba<-range(mu.X[mu.X!=0])
  	t.Xba<-12/(2*max(wX0)-min(wX0))^2
 
-	Prior<-summary(lm(mu.Y~mu.X))$coefficients #coeff ?valu? par linear model
+	Prior<-summary(lm(mu.Y~mu.X))$coefficients
 
 	mu.N0<-Prior[1]
 	t.N0<-1/Prior[3]^2
@@ -186,8 +178,8 @@ function(Sn,ph,debug) #appel Bug
 		parameters <- c(parameters,"Xba")}
 
 	Cal.sim <- bugs(data, parameters, inits=NULL, model.file,
-    	n.chains=1, n.iter=50000,codaPkg=FALSE,n.thin=5, n.burnin=25000,
-    	bugs.directory="c:/Program Files/WinBUGS14/",debug=debug)
+    	n.chains=n.chains, n.iter=n.iter,codaPkg=codaPkg,n.thin=n.thin, n.burnin=n.burnin,
+    	bugs.directory=bugs.directory,debug=debug)
 
   Results<-list(mu.X=mu.X,mu.Y=mu.Y,mu.Y0=mu.Y0,t.Y0=t.Y0,mu.Ya=mu.Ya,t.Ya=t.Ya,Cal.sim=Cal.sim)
 	}

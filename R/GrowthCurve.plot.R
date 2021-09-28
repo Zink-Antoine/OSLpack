@@ -6,6 +6,7 @@
 #' @param ph0  [numeric] (**with default**): selected preheat
 #' @param Unique [logical]  (**with default**)  TRUE a single De, independent from preheat temperature
 #' @param debug [logical] (**required**) TRUE debug the WinBug code
+#' @param ... further arguments that will be passed to the function BayesCal
 #'
 #' @return a plot
 #' @return WinBUg results object
@@ -15,7 +16,7 @@
 #'
 #' @export
 #'
-`GrowthCurve.plot` <-function(Sn,ph0=seq(1,4),Unique=FALSE,debug) #
+`GrowthCurve.plot` <-function(Sn,ph0=seq(1,4),Unique=FALSE,debug,...) #
 	{
 
   debug<-FALSE
@@ -26,7 +27,7 @@
 
   if (!Unique){#a De for each preheat
       for (ph in 1:length(ph0)){
-        Results<-BayesCal(Sn,ph,debug)
+        Results<-BayesCal(Sn,ph,debug,...)
         print(Results)
         Cal.sim<-Results$Cal.sim
         mu.X<-Results$mu.X
@@ -70,7 +71,7 @@
     }
 
     else {# a single De
-      Results<-BayesCal(Sn,ph0,debug)
+      Results<-BayesCal(Sn,ph0,debug,...)
       print(Results)
       Cal.sim<-Results$Cal.sim
       mu.X<-Results$mu.X

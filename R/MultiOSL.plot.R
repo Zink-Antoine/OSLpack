@@ -17,6 +17,13 @@
 #'
 #' @export
 #'
+#' @examples
+#' data(Anatolian2, envir = environment())
+#' file<-Anatolian2$FILE
+#' png("SH112482_IR.png",width=1063,height=1500, units = "px", pointsize = 24)
+#' MultiOSL.plot(file[[1]],ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
+#' dev.off()
+#'
 `MultiOSL.plot` <-
 function(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom="nomFile",ph0=seq(1,4),NomEch=c(ech1="ech1",ech2="ech2",ech3="ech3",ech4="ech4")) #
 	{

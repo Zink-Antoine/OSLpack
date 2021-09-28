@@ -20,6 +20,11 @@
 #'
 #' @export
 #'
+#' @examples
+#' data(Anatolian2, envir = environment())
+#' file<-Anatolian2$FILE
+#' Sn(file,2,1)
+#'
 `Sn` <-
 function(file,ech,OSL,
          Dose=c(0,50,80,110,0,50),
@@ -31,7 +36,8 @@ function(file,ech,OSL,
 	{
 
 	alpha<-FALSE
-	nbCycle<-length(Dose)
+	nbCycleb<-length(Dose)
+	nbCycle<-nbCycleb
 	B1<-file[[1]]@DATA[file[[1]]@METADATA$LTYPE!="TL"]
 	L<-length(B1)
 
@@ -48,9 +54,9 @@ function(file,ech,OSL,
 	nech<-L/(aliquot*cycleSAR)
 	nbd<-aliquot*nech
 
-	BgSg_ratio<-background.integral/signal.integral
+	BgSg_ratio<-length(background.integral)/length(signal.integral)
 
-	B1<-array(B1,dim=c(cycle0,6,nech,aliquot),dimnames=list(TypLum,Dose,seq(1,nech),Temp[ph0]))
+	B1<-array(B1,dim=c(cycle0,nbCycleb,nech,aliquot),dimnames=list(TypLum,Dose,seq(1,nech),Temp[ph0]))
 	B<-B1
 	if (alpha==TRUE){
 		B2<-array(B2,dim=c(cycle0,1,nech,aliquot),dimnames=list(TypLum,"a",seq(1,nech),Temp[ph0]))
@@ -66,7 +72,8 @@ function(file,ech,OSL,
 
 
 	irrx<-switch(OSL,c(TypLum[1],TypLum[3]),c(TypLum[2],TypLum[4]))#OSL=1 => IRSL; OSL=2 => BLOSL
-	Sn<-data.frame(meanY=rep(0,20),sdY=rep(0,20),meanX=rep(Dose[seq(2,6)],4),sdX=rep(1,20),meanY0=rep(0,20),sdY0=rep(0,20),meanXa=c(90,90,90,90,rep(0,16)),sdXa=c(rep(1,4),rep(0,16)),meanYa=rep(0,20),sdYa=rep(0,20))
+	CycleSARirr<-cycle0*nbCycleb-4 #nb cycle with beta dose only
+	Sn<-data.frame(meanY=rep(0,CycleSARirr),sdY=rep(0,CycleSARirr),meanX=rep(Dose[seq(2,nbCycleb)],4),sdX=rep(1,CycleSARirr),meanY0=rep(0,CycleSARirr),sdY0=rep(0,CycleSARirr),meanXa=c(90,90,90,90,rep(0,CycleSARirr-4)),sdXa=c(rep(1,4),rep(0,CycleSARirr-4)),meanYa=rep(0,CycleSARirr),sdYa=rep(0,CycleSARirr))
 
 	for (j in 1:aliquot){
 		Lx<-B[irrx[1],,ech,j]
@@ -77,8 +84,8 @@ function(file,ech,OSL,
 		for (i in 1:nbCycle){
 			S<-(sum(Lx[[i]][signal.integral])-(sum(Lx[[i]][background.integral]))/BgSg_ratio)/(sum(Tx[[i]][signal.integral])-(sum(Tx[[i]][background.integral]))/BgSg_ratio)
 			if (i==1){Sn$meanY0[j]<-S; Sn$sdY0[j]<-S*0.01}
-				else {if(i==7){Sn$meanYa[j]<-S; Sn$sdYa[j]<-S*0.01}
-					else {Sn$meanY[(j-1)*7+i-2*j+1]<-S; Sn$sdY[(j-1)*7+i-2*j+1]<-S*0.01}
+				else {if(i==7& alpha==TRUE){Sn$meanYa[j]<-S; Sn$sdYa[j]<-S*0.01}
+					else {Sn$meanY[(j-1)*nbCycle+i-2*j+1]<-S; Sn$sdY[(j-1)*nbCycle+i-2*j+1]<-S*0.01}
 					}
 				}
 		}

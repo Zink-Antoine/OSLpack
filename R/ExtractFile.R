@@ -9,20 +9,23 @@
 #' @return The Risoe.BINfileData-class object is rewritten to take into account only the data included in the sequence
 #' @export
 #'
-ExtractFile<-function(files,n_file=1,sequence){
-#extract data from a Risoe.BINfileData-class object
-if (class(files[[n_file]])!="Risoe.BINfileData") {stop("invalid 'files' class")}
+ExtractFile<-
+  function(files,n_file=1,sequence){
+    if (class(files)!="Risoe.BINfileData"){
+      if (class(files[[n_file]])!="Risoe.BINfileData") {stop("invalid 'files' class")}
+      files<-files[[n_file]]
+    }
 
-if (missing(sequence)) {
-  selection<-files[[n_file]]@METADATA$SEL=="TRUE"
-  files[[n_file]]@DATA<-files[[n_file]]@DATA[selection]
-  files[[n_file]]@METADATA<-files[[n_file]]@METADATA[selection,]
-  files[[n_file]]@.RESERVED<-files[[n_file]]@.RESERVED[selection]
- }
-else{
-  files[[n_file]]@DATA<-files[[n_file]]@DATA[sequence]
-  files[[n_file]]@METADATA<-files[[n_file]]@METADATA[sequence,]
-  files[[n_file]]@.RESERVED<-files[[n_file]]@.RESERVED[sequence]
-}
-files
-}
+    if (missing(sequence)) {
+      selection<-files@METADATA$SEL=="TRUE"
+      files@DATA[[n_file]]<-files@DATA[selection]
+      files@METADATA<-files@METADATA[selection,]
+      files@.RESERVED<-files@.RESERVED[selection]
+    }
+    else{
+      files@DATA<-files@DATA[sequence]
+      files@METADATA<-files@METADATA[sequence,]
+      files@.RESERVED<-files@.RESERVED[sequence]
+    }
+    files
+  }

@@ -13,8 +13,15 @@
 #' @import R2WinBUGS
 #' @import rv
 #' @importFrom tcltk tk_choose.dir
+#'
 #' @export
 #'
+#' @examples
+#' File<-ReadFile(n=1)
+#' file<-File$FILE
+#' nomFile<-File$NFILE
+
+
 
 ReadFile<-function(list="liste fichier.txt"
 ,n=1) {
