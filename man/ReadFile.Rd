@@ -21,3 +21,8 @@ NFILE File name (*.bin/*.binx)
 ReadFile
 load one or several BIN/BINX files
 }
+\examples{
+File<-ReadFile(n=1)
+file<-File$FILE
+nomFile<-File$NFILE
+}

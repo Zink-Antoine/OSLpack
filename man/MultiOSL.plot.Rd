@@ -35,3 +35,11 @@ a page with multiplot
 \description{
 OSL glowcurve for various preheat
 }
+\examples{
+data(Anatolian2, envir = environment())
+file<-Anatolian2$FILE
+png("SH112482_IR.png",width=1063,height=1500, units = "px", pointsize = 24)
+MultiOSL.plot(file[[1]],ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
+dev.off()
+
+}

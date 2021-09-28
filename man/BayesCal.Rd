@@ -4,18 +4,68 @@
 \alias{BayesCal}
 \title{BayesCal}
 \usage{
-BayesCal(Sn, ph, debug)
+BayesCal(
+  Sn,
+  ph,
+  n.chains = 1,
+  n.iter = 2000,
+  codaPkg = FALSE,
+  n.thin = max(1, floor(n.chains * (n.iter - n.burnin)/1000)),
+  n.burnin = n.iter/2,
+  bugs.directory = "c:/Program Files/WinBUGS14/",
+  debug = FALSE
+)
 }
 \arguments{
 \item{Sn}{[list] (**required**) efficiencies S table (see Sn function)}
 
 \item{ph}{[numeric] (**required**): selected preheat}
 
-\item{debug}{[logical] (**required**) TRUE debug the WinBug code}
+\item{n.chains}{[numeric] (**with default value**) number of Markov chains (default: 1)}
+
+\item{n.iter}{number of total iterations per chain (including burn in;
+    default: 2000)}
+
+\item{codaPkg}{logical; if \code{FALSE} (default) a \code{bugs} object
+    is returned, if \code{TRUE} file names of \pkg{WinBUGS} output are
+    returned for easy access by the \pkg{coda} package through function
+    \code{\link[R2WinBUGS]{read.bugs}} (not used if \code{program="OpenBUGS"}).
+    A \code{bugs} object can be converted to an \code{mcmc.list} object as 
+    used by the \pkg{coda} package with the method \code{\link[coda]{as.mcmc.list}} 
+    (for which a method is provided by R2WinBUGS).}
+
+\item{n.thin}{thinning rate. Must be a positive integer.  Set
+    \code{n.thin} > 1 to save memory and computation time if
+    \code{n.iter} is large.  Default is \code{max(1, floor(n.chains *
+    (n.iter-n.burnin) / 1000))} which will only thin if there are at
+    least 2000 simulations.}
+
+\item{n.burnin}{length of burn in, i.e. number of iterations to
+    discard at the beginning. Default is \code{n.iter/2}, that is,
+    discarding the first half of the simulations.}
+
+\item{bugs.directory}{directory that contains the \pkg{WinBUGS} executable.
+    If the global option \code{R2WinBUGS.bugs.directory} is not \code{NULL}, 
+    it will be used as the default.}
+
+\item{debug}{if \code{FALSE} (default), \pkg{WinBUGS} is closed automatically
+    when the script has finished running, otherwise \pkg{WinBUGS} remains open
+    for further investigation}
 }
 \value{
 WinBUGS simulation results (see R2WinBUGS::bugs help page)
 }
 \description{
 De calculation using gibbs sampler (WinBUGS code call)
+}
+\examples{
+data(Anatolian2, envir = environment())
+file<-Anatolian2$FILE
+
+\dontrun{
+## You may need to edit "bugs.directory",
+## also you need write access in the working directory:
+BayesCal(Sn(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30)),c(1,2,3,4),TRUE)
+}
+
 }

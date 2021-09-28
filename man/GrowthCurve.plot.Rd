@@ -4,7 +4,7 @@
 \alias{GrowthCurve.plot}
 \title{GrowthCurve.plot}
 \usage{
-GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug)
+GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug, ...)
 }
 \arguments{
 \item{Sn}{[list] efficiencies S table (see Sn function)}
@@ -14,6 +14,8 @@ GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug)
 \item{Unique}{[logical]  (**with default**)  TRUE a single De, independent from preheat temperature}
 
 \item{debug}{[logical] (**required**) TRUE debug the WinBug code}
+
+\item{...}{further arguments that will be passed to the function BayesCal}
 }
 \value{
 a plot

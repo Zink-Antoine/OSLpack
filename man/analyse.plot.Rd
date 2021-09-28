@@ -14,7 +14,8 @@ analyse.plot(
   ph0 = seq(1, 4),
   NomEch = c(ech1 = "ech1", ech2 = "ech2", ech3 = "ech3", ech4 = "ech4"),
   signal.integral = seq(6, 10),
-  background.integral = seq(85, 104)
+  background.integral = seq(85, 104),
+  ...
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ analyse.plot(
 \item{signal.integral}{[vector] (**with default**): vector with the limits for the signal integral.}
 
 \item{background.integral}{[vector] (**with default**): vector with the bounds for the background integral.}
+
+\item{...}{further arguments that will be passed to the function BayesCal}
 }
 \value{
 several plots
@@ -45,4 +48,13 @@ WinBUg results objects
 }
 \description{
 analyse OSL-SAR measurement at various preheat and plot the result
+}
+\examples{
+data(Anatolian2, envir = environment())
+file<-Anatolian2$FILE
+png("Analyse BL SH112482.png",width=1063,height=1500, units = "px", pointsize = 24)
+analyse.plot(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200),ph0=c(1,2,3,4),
+                  Unique=FALSE,NomEch=c("figurine Anatolie SH112482"))
+dev.off()
+
 }

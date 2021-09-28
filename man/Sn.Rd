@@ -47,3 +47,9 @@ $Lum [matrix] OSL data
 \description{
 determines the sensitivity values for OSL
 }
+\examples{
+data(Anatolian2, envir = environment())
+file<-Anatolian2$FILE
+Sn(file,2,1)
+
+}
