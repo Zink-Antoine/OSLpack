@@ -18,7 +18,7 @@ ExtractFile<-
 
     if (missing(sequence)) {
       selection<-files@METADATA$SEL=="TRUE"
-      files@DATA[[n_file]]<-files@DATA[selection]
+      files@DATA<-files@DATA[selection]
       files@METADATA<-files@METADATA[selection,]
       files@.RESERVED<-files@.RESERVED[selection]
     }

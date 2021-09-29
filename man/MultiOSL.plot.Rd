@@ -15,17 +15,17 @@ MultiOSL.plot(
 )
 }
 \arguments{
-\item{file}{[Risoe.BINfileData-class] or [list] (**required**): BIN/BINX file}
+\item{file}{[Risoe.BINfileData-class] or [list] (*required*): BIN/BINX file}
 
-\item{ech}{[numeric] (**with default**): sample number}
+\item{ech}{[numeric] (*required*): sample number}
 
-\item{OSL}{[numeric] (**with default**): 1: IR-OSL; 2: BL-OSL}
+\item{OSL}{[numeric] (*required*): 1: IR-OSL; 2: BL-OSL}
 
-\item{Dose}{[numeric] or [list] (**with default**): doses in seconds}
+\item{Dose}{[numeric] or [list] (*with default*): doses in seconds}
 
 \item{nom}{[string] (**optional**) name of the BIN/BINX file}
 
-\item{ph0}{[numeric] (**with default**): selected preheat}
+\item{ph0}{[numeric] (*with default*): selected preheat}
 
 \item{NomEch}{[string] (**with default**) name of the sample (eg. reference number)}
 }
@@ -38,8 +38,6 @@ OSL glowcurve for various preheat
 \examples{
 data(Anatolian2, envir = environment())
 file<-Anatolian2$FILE
-png("SH112482_IR.png",width=1063,height=1500, units = "px", pointsize = 24)
-MultiOSL.plot(file[[1]],ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
-dev.off()
+MultiOSL.plot(file,ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
 
 }

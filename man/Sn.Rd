@@ -50,6 +50,6 @@ determines the sensitivity values for OSL
 \examples{
 data(Anatolian2, envir = environment())
 file<-Anatolian2$FILE
-Sn(file,2,1)
+Sn(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200))
 
 }

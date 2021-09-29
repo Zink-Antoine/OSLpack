@@ -19,25 +19,25 @@ analyse.plot(
 )
 }
 \arguments{
-\item{file}{[Risoe.BINfileData-class] (**required**): BIN/BINX file}
+\item{file}{[Risoe.BINfileData-class] or [list] (*required*): BIN/BINX file}
 
 \item{nom}{[character] (**optional**) BIN/BINX file name}
 
-\item{ech}{[numeric] (**required**): sample number}
+\item{ech}{[numeric] (*required*): sample number}
 
-\item{OSL}{[numeric] (**required**): 1: IR-OSL; 2: BL-OSL}
+\item{OSL}{[numeric] (*required*): 1: IR-OSL; 2: BL-OSL}
 
-\item{Dose}{[numeric list] (**with default**) doses in seconds}
+\item{Dose}{[numeric] or [list] (*with default*): doses in seconds}
 
-\item{Unique}{[logical] (**with default**) TRUE if the equivalent dose is undependant from the preheat}
+\item{Unique}{[logical]  (**with default**)  TRUE a single De, independent from preheat temperature}
 
-\item{ph0}{[numeric] (**with default**): selected preheat}
+\item{ph0}{[numeric] (*with default*): selected preheat}
 
 \item{NomEch}{[character] (**optional**) sample name}
 
-\item{signal.integral}{[vector] (**with default**): vector with the limits for the signal integral.}
+\item{signal.integral}{[vector] (*with default*): vector with the limits for the signal integral.}
 
-\item{background.integral}{[vector] (**with default**): vector with the bounds for the background integral.}
+\item{background.integral}{[vector] (*with default*): vector with the bounds for the background integral.}
 
 \item{...}{further arguments that will be passed to the function BayesCal}
 }
@@ -52,9 +52,12 @@ analyse OSL-SAR measurement at various preheat and plot the result
 \examples{
 data(Anatolian2, envir = environment())
 file<-Anatolian2$FILE
+
+\dontrun{
 png("Analyse BL SH112482.png",width=1063,height=1500, units = "px", pointsize = 24)
 analyse.plot(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200),ph0=c(1,2,3,4),
                   Unique=FALSE,NomEch=c("figurine Anatolie SH112482"))
 dev.off()
+}
 
 }

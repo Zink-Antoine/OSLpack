@@ -17,9 +17,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' File<-ReadFile(n=1)
 #' file<-File$FILE
 #' nomFile<-File$NFILE
+#' }
 
 
 

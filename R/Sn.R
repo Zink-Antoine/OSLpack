@@ -23,7 +23,7 @@
 #' @examples
 #' data(Anatolian2, envir = environment())
 #' file<-Anatolian2$FILE
-#' Sn(file,2,1)
+#' Sn(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200))
 #'
 `Sn` <-
 function(file,ech,OSL,
@@ -49,7 +49,7 @@ function(file,ech,OSL,
 		}
 
 	cycle0<-2*2 #IRSL+BLSL*{Lx,Tx}
-	cycleSAR<-cycle0*nbCycle #ph+IRSL+BLSL*{Lx,Tx}*{nat,b1,b2,b3,0,b1[,a]}
+	cycleSAR<-cycle0*nbCycle #IRSL+BLSL*{Lx,Tx}*{nat,b1,b2,b3,0,b1[,a]}
 	aliquot<-length(ph0) # number of preheating temperatures
 	nech<-L/(aliquot*cycleSAR)
 	nbd<-aliquot*nech
@@ -85,7 +85,7 @@ function(file,ech,OSL,
 			S<-(sum(Lx[[i]][signal.integral])-(sum(Lx[[i]][background.integral]))/BgSg_ratio)/(sum(Tx[[i]][signal.integral])-(sum(Tx[[i]][background.integral]))/BgSg_ratio)
 			if (i==1){Sn$meanY0[j]<-S; Sn$sdY0[j]<-S*0.01}
 				else {if(i==7& alpha==TRUE){Sn$meanYa[j]<-S; Sn$sdYa[j]<-S*0.01}
-					else {Sn$meanY[(j-1)*nbCycle+i-2*j+1]<-S; Sn$sdY[(j-1)*nbCycle+i-2*j+1]<-S*0.01}
+					else {Sn$meanY[(j-1)*(nbCycleb-1)+i-1]<-S; Sn$sdY[(j-1)*(nbCycle-1)+i-1]<-S*0.01}
 					}
 				}
 		}

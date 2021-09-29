@@ -7,13 +7,15 @@
 GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug, ...)
 }
 \arguments{
-\item{Sn}{[list] efficiencies S table (see Sn function)}
+\item{Sn}{[list] (**required**) efficiencies S table (see Sn function)}
 
 \item{ph0}{[numeric] (**with default**): selected preheat}
 
 \item{Unique}{[logical]  (**with default**)  TRUE a single De, independent from preheat temperature}
 
-\item{debug}{[logical] (**required**) TRUE debug the WinBug code}
+\item{debug}{if \code{FALSE} (default), \pkg{WinBUGS} is closed automatically
+    when the script has finished running, otherwise \pkg{WinBUGS} remains open
+    for further investigation}
 
 \item{...}{further arguments that will be passed to the function BayesCal}
 }

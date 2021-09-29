@@ -2,13 +2,8 @@
 #'
 #' OSL glowcurve for various preheat
 #'
-#'
-#' @param file  [Risoe.BINfileData-class] or [list] (**required**): BIN/BINX file
-#' @param ech [numeric] (**with default**): sample number
-#' @param OSL [numeric] (**with default**): 1: IR-OSL; 2: BL-OSL
-#' @param Dose [numeric] or [list] (**with default**): doses in seconds
+#' @inheritParams Sn
 #' @param nom [string] (**optional**) name of the BIN/BINX file
-#' @param ph0 [numeric] (**with default**): selected preheat
 #' @param NomEch [string] (**with default**) name of the sample (eg. reference number)
 #'
 #' @return a page with multiplot
@@ -20,9 +15,7 @@
 #' @examples
 #' data(Anatolian2, envir = environment())
 #' file<-Anatolian2$FILE
-#' png("SH112482_IR.png",width=1063,height=1500, units = "px", pointsize = 24)
-#' MultiOSL.plot(file[[1]],ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
-#' dev.off()
+#' MultiOSL.plot(file,ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
 #'
 `MultiOSL.plot` <-
 function(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom="nomFile",ph0=seq(1,4),NomEch=c(ech1="ech1",ech2="ech2",ech3="ech3",ech4="ech4")) #
