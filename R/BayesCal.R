@@ -76,10 +76,10 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chai
 
 	#logical link
 	for (j in 1:l){
-		for (i in 1:5)
+		for (i in 1:d)
 			{
-			Y[(j-1)*5+i]~dnorm(y[(j-1)*5+i],tau)
-			y[(j-1)*5+i]<-n[j]+m[j]*X[(j-1)*5+i]
+			Y[(j-1)*d+i]~dnorm(y[(j-1)*d+i],tau)
+			y[(j-1)*d+i]<-n[j]+m[j]*X[(j-1)*d+i]
 			}
 		Y0[j]<-n[j]+m[j]*X0
 		}
@@ -87,9 +87,9 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chai
 	#data
 	for (j in 1:l){
    		mu.Y0[j]~dnorm(Y0[j],t.Y0[j])
-		for (i in 1:5){
-			mu.Y[(j-1)*5+i]~dnorm(Y[(j-1)*5+i],t.Y[(j-1)*5+i])
-			X[(j-1)*5+i]~dnorm(mu.X[(j-1)*5+i],t.X[(j-1)*5+i])
+		for (i in 1:d){
+			mu.Y[(j-1)*d+i]~dnorm(Y[(j-1)*d+i],t.Y[(j-1)*d+i])
+			X[(j-1)*d+i]~dnorm(mu.X[(j-1)*d+i],t.X[(j-1)*d+i])
 			}
 		}
 	}
@@ -111,13 +111,15 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chai
 
 
 	#data
-	j<-(ph-1)*5+1
+	d<-length(levels(factor(DataEch$meanX)))
+	j<-(ph-1)*d+1
 	aliquot<-0
 	for (i in 1:length(j)){
 		aliquot<-c(aliquot,seq(j[i],j[i]+4))
 	}
 	aliquot<-aliquot[-1]
 	l<-length(ph)
+
 
 
 	mu.Y <- DataEch$meanY[aliquot];
@@ -147,14 +149,14 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chai
 		b<-0.001 #0.0367
 		}
 	else {
-	my<-rep(0,5)
-	mx<-rep(0,5)
+	my<-rep(0,d)
+	mx<-rep(0,d)
 	sigy<-rep(0,l)
 	for (j in 1:l){
-	for (i in 1:5)
+	for (i in 1:d)
 		{
-		my[i]<-mu.Y[(j-1)*5+i]
-		mx[i]<-mu.X[(j-1)*5+i]
+		my[i]<-mu.Y[(j-1)*d+i]
+		mx[i]<-mu.X[(j-1)*d+i]
 		}
 		sigy[j]<-summary(lm(my~mx))$sigma
 	}
@@ -165,7 +167,7 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chai
 	b<-n0*S0/2
 	}
 
-	data <- c("l","mu.Y0","t.Y0","mu.X","t.X","mu.Y","t.Y","mu.N0","t.N0","mu.M0","t.M0","mu.X0","t.X0","a","b")
+	data <- c("l","d","mu.Y0","t.Y0","mu.X","t.X","mu.Y","t.Y","mu.N0","t.N0","mu.M0","t.M0","mu.X0","t.X0","a","b")
 
 	#parameters
 	inits <- function(){
