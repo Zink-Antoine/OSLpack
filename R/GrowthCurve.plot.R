@@ -40,10 +40,10 @@
 
 
         if (!Sn$alpha){
-          plot(mu.X,mu.Y,ylim=c(-0.02,max(mu.Y)*1.2),ylab="Sn",xlab="Dose (s beta)")
+          plot(mu.X,mu.Y,ylim=c(-0.02,max(mu.Y)*1.2),xlim=c(0,max(mu.X)*1.2),ylab="Sn",xlab="Dose (s beta)")
         }
         else {
-          plot(mu.X,mu.Y,ylim=c(-0.02,max(mu.Y,mu.Ya[1])*1.2),ylab="Sn",xlab="Dose (s beta)")
+          plot(mu.X,mu.Y,ylim=c(-0.02,max(mu.Y,mu.Ya[1])*1.2),xlim=c(0,max(mu.X)*1.2),ylab="Sn",xlab="Dose (s beta)")
           xa<-rvnorm(1,Cal.sim$mean$Xba,Cal.sim$sd$Xba)
           ya<-rvnorm(1,mu.Ya[1],1/sqrt(t.Ya[1]))
           points.rv(0, ya,rvcol="green")

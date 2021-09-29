@@ -15,14 +15,15 @@
 #' @examples
 #' data(Anatolian2, envir = environment())
 #' file<-Anatolian2$FILE
-#' MultiOSL.plot(file,ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
+#' MultiOSL.plot(file,ech=2,OSL=1,Dose=c(0,200,250,300,0,200),ph0=seq(1,4),NomEch=c("SH112482"))
 #'
 `MultiOSL.plot` <-
 function(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom="nomFile",ph0=seq(1,4),NomEch=c(ech1="ech1",ech2="ech2",ech3="ech3",ech4="ech4")) #
 	{
 
 	L<-Sn(file=file,ech=ech,OSL=OSL,Dose=Dose)$Lum
-	cycle<-length(L)/16 # 6 without alpha et 7 with alpha, numerator = 24 with ph et 16 without ph
+	cycle<-length(L)/16
+	cycleirr<-cycle-1
 	ph.nom<-paste(c("250","275","300","325"),"\U00B0","C",sep="")
 	typOSL<-switch(OSL,"IR-","BL-")
 	typOSL2<-switch(OSL,"IRSL","OSL")
@@ -44,12 +45,12 @@ function(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nom="nomFile",ph0=seq(1,4),Nom
 		par(fig=F,new=TRUE,mar=c(2,2,0,0))
 
 		Y1<-L[OSL,1,j][[1]]
-		Y2<-array(dim=5)
-		for (i in 1:5){
+		Y2<-array(dim=cycleirr)
+		for (i in 1:cycleirr){
 			Y2[i]<-L[OSL,i+1,j]
 			}
 		plot(seq(1,n.x),Y1, ylim=c(0,max(max(Y1),max(unlist(Y2)))*1.2),type="l",axes=FALSE,xaxs="i",yaxs="i",col=2) #
-		for (i in 1:5){
+		for (i in 1:cycleirr){
 			lines(seq(1,n.x),Y2[[i]],lty="dashed")
 			}
 		axis(1,tcl=-0.2,padj=-2,cex.axis=0.7)
