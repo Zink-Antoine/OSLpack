@@ -1,5 +1,10 @@
-theme: jekyll-theme-minimal
-
+theme:
+  name: material
+  palette:
+    primary: 'deep-purple'
+    accent: 'orange'
+  feature:
+    tabs: true
 
 markdown_extensions:
   - toc:
