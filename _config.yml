@@ -1,5 +1,5 @@
 theme:
-  name: material
+  name: jekyll-theme-minimal
   palette:
     primary: 'deep-purple'
     accent: 'orange'
