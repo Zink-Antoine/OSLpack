@@ -1,5 +1,4 @@
-theme:
-  name: jekyll-theme-minimal
+theme: jekyll-theme-minimal
 
 markdown_extensions:
   - toc:
