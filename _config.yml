@@ -1,1 +1,6 @@
 theme: jekyll-theme-minimal
+
+nav:
+    - Home: index.md
+    - Install Guide: install.md
+    - FAQ: faq.md
