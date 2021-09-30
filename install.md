@@ -1,5 +1,5 @@
 ---
-title"Installation (Windows computer)"
+title: "Installation (Windows computer)"
 ---
 
 This package required WinBUGS 1.4 (in the future it is planned to use OpenBUGS on Mac as well)
