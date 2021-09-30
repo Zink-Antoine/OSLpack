@@ -7,6 +7,8 @@
 #' @param Sn [list] (**required**) efficiencies S table (see Sn function)
 #' @param ph  [numeric] (**required**): selected preheat
 #' @param n.chains [numeric] (**with default value**) number of Markov chains (default: 1)
+#' @param ... further arguments that will be passed to the function BayesCal
+
 #'
 #' @return WinBUGS simulation results (see R2WinBUGS::bugs help page)
 #'
@@ -20,12 +22,13 @@
 #' ## You may need to edit "bugs.directory",
 #' ## also you need write access in the working directory:
 #' BayesCal(Sn(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200)),ph=c(1,2,3,4),
-#'          bugs.directory="C:~/Program Files/WinBUGS14",debug=TRUE)
+#'          debug=TRUE)
 #' }
 #'
 `BayesCal` <-
-function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chains * (n.iter-n.burnin) / 1000)), n.burnin=n.iter/2,
-         bugs.directory="C:/Users/antoine.zink/Documents/Lecteur D/Program Files/WinBUGS14",debug=FALSE) #appel Bug
+function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,
+         n.thin= max(1, floor(n.chains * (n.iter-n.burnin) / 1000)), n.burnin=n.iter/2,
+         debug=FALSE,...) #appel Bug
 	{
 
 	### version with alpha ##################
@@ -182,7 +185,7 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,n.thin= max(1, floor(n.chai
 
 	Cal.sim <- bugs(data, parameters, inits=NULL, model.file,
     	n.chains=n.chains, n.iter=n.iter,codaPkg=codaPkg,n.thin=n.thin, n.burnin=n.burnin,
-    	bugs.directory=bugs.directory,debug=debug)
+    	debug=debug)
 
   Results<-list(mu.X=mu.X,mu.Y=mu.Y,mu.Y0=mu.Y0,t.Y0=t.Y0,mu.Ya=mu.Ya,t.Ya=t.Ya,Cal.sim=Cal.sim)
 	}

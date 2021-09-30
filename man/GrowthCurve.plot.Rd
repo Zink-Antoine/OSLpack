@@ -27,3 +27,14 @@ WinBUg results object
 \description{
 growthcurve plot at a single preheat temperature
 }
+\examples{
+data(Anatolian2, envir = environment())
+file<-Anatolian2$FILE
+
+\dontrun{
+GrowthCurve.plot(Sn(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200)),
+                ph0=c(1,2,3,4),
+                  Unique=FALSE)
+}
+
+}

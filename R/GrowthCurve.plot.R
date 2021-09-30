@@ -5,7 +5,6 @@
 #' @inheritParams BayesCal
 #' @param ph0  [numeric] (**with default**): selected preheat
 #' @param Unique [logical]  (**with default**)  TRUE a single De, independent from preheat temperature
-#' @param ... further arguments that will be passed to the function BayesCal
 #'
 #' @return a plot
 #' @return WinBUg results object
@@ -14,6 +13,16 @@
 #' @importFrom utils getS3method
 #'
 #' @export
+#'
+#'@examples
+#' data(Anatolian2, envir = environment())
+#' file<-Anatolian2$FILE
+#'
+#'\dontrun{
+#' GrowthCurve.plot(Sn(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200)),
+#'                 ph0=c(1,2,3,4),
+#'                   Unique=FALSE)
+#'}
 #'
 `GrowthCurve.plot` <-function(Sn,ph0=seq(1,4),Unique=FALSE,debug,...) #
 	{

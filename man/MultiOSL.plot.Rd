@@ -38,6 +38,6 @@ OSL glowcurve for various preheat
 \examples{
 data(Anatolian2, envir = environment())
 file<-Anatolian2$FILE
-MultiOSL.plot(file,ech=2,OSL=1,ph0=seq(1,4),NomEch=c("SH112482"))
+MultiOSL.plot(file,ech=2,OSL=1,Dose=c(0,200,250,300,0,200),ph0=seq(1,4),NomEch=c("SH112482"))
 
 }

@@ -6,7 +6,6 @@
 #' @inheritParams GrowthCurve.plot
 #' @param nom  [character] (**optional**) BIN/BINX file name
 #' @param NomEch [character] (**optional**) sample name
-#' @param ... further arguments that will be passed to the function BayesCal
 #'
 #' @return several plots
 #' @return WinBUg results objects

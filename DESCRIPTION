@@ -20,4 +20,5 @@ Imports: rv,
 Suggests:
     knitr,
     rmarkdown
+SystemRequirements: WinBUGS 1.4 for function BayesCal()
 VignetteBuilder: knitr

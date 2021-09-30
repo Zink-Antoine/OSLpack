@@ -12,8 +12,8 @@ BayesCal(
   codaPkg = FALSE,
   n.thin = max(1, floor(n.chains * (n.iter - n.burnin)/1000)),
   n.burnin = n.iter/2,
-  bugs.directory = "C:/Users/antoine.zink/Documents/Lecteur D/Program Files/WinBUGS14",
-  debug = FALSE
+  debug = FALSE,
+  ...
 )
 }
 \arguments{
@@ -44,13 +44,11 @@ BayesCal(
     discard at the beginning. Default is \code{n.iter/2}, that is,
     discarding the first half of the simulations.}
 
-\item{bugs.directory}{directory that contains the \pkg{WinBUGS} executable.
-    If the global option \code{R2WinBUGS.bugs.directory} is not \code{NULL}, 
-    it will be used as the default.}
-
 \item{debug}{if \code{FALSE} (default), \pkg{WinBUGS} is closed automatically
     when the script has finished running, otherwise \pkg{WinBUGS} remains open
     for further investigation}
+
+\item{...}{further arguments that will be passed to the function BayesCal}
 }
 \value{
 WinBUGS simulation results (see R2WinBUGS::bugs help page)
@@ -66,7 +64,7 @@ file<-Anatolian2$FILE
 ## You may need to edit "bugs.directory",
 ## also you need write access in the working directory:
 BayesCal(Sn(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200)),ph=c(1,2,3,4),
-         bugs.directory="C:~/Program Files/WinBUGS14",debug=TRUE)
+         debug=TRUE)
 }
 
 }
