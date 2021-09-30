@@ -2,9 +2,9 @@
 
 
 
-### Markdown
+### Install WinBUGS
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+[WinBUGS](/install.md)
 
 ```markdown
 Syntax highlighted code block
@@ -24,7 +24,7 @@ Syntax highlighted code block
 [Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+[FAQ] (/faq.md)
 
 ### [Home](https://zink-antoine.github.io)
 
