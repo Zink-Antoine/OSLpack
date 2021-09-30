@@ -1,1 +1,3 @@
-FAQ
+---
+title: "Frequently Asked Questions"
+---
