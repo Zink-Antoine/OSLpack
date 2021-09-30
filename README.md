@@ -9,3 +9,5 @@ The _WinBUGS_ software is available for free at
 https://www.mrc-bsu.cam.ac.uk/software/bugs/the-bugs-project-winbugs/
 
 indicate the location of the WinBUGS14 folder in .Rprofile, by creating the global option _R2WinBUGS.bugs.directory_
+eg. R2WinBUGS.bugs.directory="c:/Program Files/WinBUGS14"
+
