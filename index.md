@@ -24,7 +24,7 @@ Syntax highlighted code block
 [Link](url) and ![Image](src)
 ```
 
-[FAQ] (/faq.md)
+[FAQ](/faq.md)
 
 ### [Home](https://zink-antoine.github.io)
 
