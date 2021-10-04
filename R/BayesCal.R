@@ -114,11 +114,11 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,
 
 
 	#data
-	d<-length(levels(factor(DataEch$meanX)))
+	d<-length(levels(factor(DataEch$meanX)))+1
 	j<-(ph-1)*d+1
 	aliquot<-0
 	for (i in 1:length(j)){
-		aliquot<-c(aliquot,seq(j[i],j[i]+4))
+		aliquot<-c(aliquot,seq(j[i],j[i]+d-1))
 	}
 	aliquot<-aliquot[-1]
 	l<-length(ph)
@@ -185,7 +185,8 @@ function(Sn,ph,n.chains=1, n.iter=2000,codaPkg=FALSE,
 
 	Cal.sim <- bugs(data, parameters, inits=NULL, model.file,
     	n.chains=n.chains, n.iter=n.iter,codaPkg=codaPkg,n.thin=n.thin, n.burnin=n.burnin,
-    	debug=debug)
+    	bugs.directory=R2WinBUGS.bugs.directory,
+    	debug=debug,...)
 
   Results<-list(mu.X=mu.X,mu.Y=mu.Y,mu.Y0=mu.Y0,t.Y0=t.Y0,mu.Ya=mu.Ya,t.Ya=t.Ya,Cal.sim=Cal.sim)
 	}

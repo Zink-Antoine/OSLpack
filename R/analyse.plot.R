@@ -31,11 +31,12 @@ function(file,nom="nomFile",
          NomEch=c(ech1="ech1",ech2="ech2",ech3="ech3",ech4="ech4"),
          signal.integral=seq(6,10),
          background.integral=seq(85,104),
+         debug=FALSE,
          ...)
 	{
 
 par(mfrow=c(3,2),mar=c(4,4,3,2))
-Figures<-GrowthCurve.plot(Sn(file=file,ech=ech,OSL=OSL,Dose=Dose,signal.integral=signal.integral,background.integral=background.integral),Unique=Unique,ph0=ph0,...)
+Figures<-GrowthCurve.plot(Sn(file=file,ech=ech,OSL=OSL,Dose=Dose,signal.integral=signal.integral,background.integral=background.integral),ph0=ph0,Unique=Unique,debug=debug,...)
 par(mfg=c(3,1))
 if (!Unique){
 	plateau.plot(Figures,Dose,alpha=FALSE)

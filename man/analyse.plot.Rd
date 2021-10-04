@@ -15,6 +15,7 @@ analyse.plot(
   NomEch = c(ech1 = "ech1", ech2 = "ech2", ech3 = "ech3", ech4 = "ech4"),
   signal.integral = seq(6, 10),
   background.integral = seq(85, 104),
+  debug,
   ...
 )
 }
@@ -38,6 +39,10 @@ analyse.plot(
 \item{signal.integral}{[vector] (*with default*): vector with the limits for the signal integral.}
 
 \item{background.integral}{[vector] (*with default*): vector with the bounds for the background integral.}
+
+\item{debug}{if \code{FALSE} (default), \pkg{WinBUGS} is closed automatically
+    when the script has finished running, otherwise \pkg{WinBUGS} remains open
+    for further investigation}
 
 \item{...}{further arguments that will be passed to the function BayesCal}
 }

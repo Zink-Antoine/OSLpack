@@ -24,7 +24,7 @@
 #'                   Unique=FALSE)
 #'}
 #'
-`GrowthCurve.plot` <-function(Sn,ph0=seq(1,4),Unique=FALSE,debug,...) #
+`GrowthCurve.plot` <-function(Sn,ph0=seq(1,4),Unique=FALSE,debug=FALSE,...) #
 	{
 
   debug<-FALSE
@@ -79,7 +79,8 @@
     }
 
     else {# a single De
-      Results<-BayesCal(Sn,ph0,debug,...)
+      d<-length(levels(factor(Sn$s$meanX)))+1
+      Results<-BayesCal(Sn=Sn,ph=ph0,debug=debug,...)
       print(Results)
       Cal.sim<-Results$Cal.sim
       mu.X<-Results$mu.X
@@ -91,13 +92,15 @@
         t.Ya<-Results$t.Ya
       }
       for (ph in 1:length(ph0)){
-        k<-seq(5*(ph-1)+1,5*(ph-1)+5)#index linked to the preheat number
+        k<-seq(d*(ph-1)+1,d*(ph-1)+d)#index linked to the preheat number
+        u<-seq((ph-1)*d+1,ph*d)
 
         if (!Sn$alpha){
-          plot(mu.X[seq((ph-1)*5+1,ph*5)],mu.Y[seq((ph-1)*5+1,ph*5)],ylim=c(-0.02,max(mu.Y[seq((ph-1)*5+1,ph*5)])*1.2),ylab="Sn",xlab="Dose (s beta)")
+          plot(mu.X[u],mu.Y[u],ylim=c(-0.02,max(mu.Y)*1.2),ylab="Sn",xlab="Dose (s beta)")
+          print(c(mu.X[u],mu.Y[u],d))
         }
         else {
-          plot(mu.X[seq((ph-1)*5+1,ph*5)],mu.Y[seq((ph-1)*5+1,ph*5)],ylim=c(-0.02,max(mu.Y[seq((ph-1)*5+1,ph*5)],mu.Ya[ph])*1.2),ylab="Sn",xlab="Dose (s beta)")
+          plot(mu.X[u],mu.Y[u],ylim=c(-0.02,max(mu.Y,mu.Ya[ph])*1.2),ylab="Sn",xlab="Dose (s beta)")
           xa<-rvnorm(1,Cal.sim$mean$Xba,Cal.sim$sd$Xba)
           ya<-rvnorm(1,mu.Ya[ph],1/sqrt(t.Ya[ph]))
           points.rv(0, ya,rvcol="green")
