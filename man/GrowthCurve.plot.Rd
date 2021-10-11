@@ -4,7 +4,7 @@
 \alias{GrowthCurve.plot}
 \title{GrowthCurve.plot}
 \usage{
-GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug, ...)
+GrowthCurve.plot(Sn, ph0 = seq(1, 4), Unique = FALSE, debug = FALSE, ...)
 }
 \arguments{
 \item{Sn}{[list] (**required**) efficiencies S table (see Sn function)}

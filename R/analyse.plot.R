@@ -6,6 +6,7 @@
 #' @inheritParams GrowthCurve.plot
 #' @param nom  [character] (**optional**) BIN/BINX file name
 #' @param NomEch [character] (**optional**) sample name
+#' @param brate [numeric] (**with default**) dose rate of the beta source (default value 0.1 Gy/s)
 #'
 #' @return several plots
 #' @return WinBUg results objects
@@ -32,6 +33,7 @@ function(file,nom="nomFile",
          signal.integral=seq(6,10),
          background.integral=seq(85,104),
          debug=FALSE,
+         brate=0.1,
          ...)
 	{
 
@@ -47,7 +49,8 @@ TypOSL<-switch(OSL,"IR-OSL","BL-OSL")
 nomEch<-switch(ech,NomEch[1],NomEch[2],NomEch[3],NomEch[4])
 text(50,70,TypOSL)
 text(50,50,nomEch)
-text(50,30,"D?bit source 0,09 Gy/s")
+str1<-paste ("source irradiaton",brate," Gy:s")
+text(50,30,str1)
 
 Figures
 }

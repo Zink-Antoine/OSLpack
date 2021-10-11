@@ -15,7 +15,8 @@ analyse.plot(
   NomEch = c(ech1 = "ech1", ech2 = "ech2", ech3 = "ech3", ech4 = "ech4"),
   signal.integral = seq(6, 10),
   background.integral = seq(85, 104),
-  debug,
+  debug = FALSE,
+  brate = 0.1,
   ...
 )
 }
@@ -43,6 +44,8 @@ analyse.plot(
 \item{debug}{if \code{FALSE} (default), \pkg{WinBUGS} is closed automatically
     when the script has finished running, otherwise \pkg{WinBUGS} remains open
     for further investigation}
+
+\item{brate}{[numeric] (**with default**) dose rate of the beta source (default value 0.1 Gy/s)}
 
 \item{...}{further arguments that will be passed to the function BayesCal}
 }
