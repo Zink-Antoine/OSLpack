@@ -6,8 +6,8 @@
 \usage{
 Sn(
   file,
-  ech,
-  OSL,
+  ech = 1,
+  OSL = 2,
   Dose = c(0, 50, 80, 110, 0, 50),
   TypLum = c("LIR", "LBL", "TIR", "TBL"),
   Temp = c("250", "275", "300", "325"),
@@ -17,23 +17,23 @@ Sn(
 )
 }
 \arguments{
-\item{file}{[Risoe.BINfileData-class] or [list] (*required*): BIN/BINX file}
+\item{file}{[Risoe.BINfileData-class],[list] (**required**) the BIN/BINX file(s)}
 
-\item{ech}{[numeric] (*required*): sample number}
+\item{ech}{[numeric] (**with default**) the sample number}
 
-\item{OSL}{[numeric] (*required*): 1: IR-OSL; 2: BL-OSL}
+\item{OSL}{[numeric] (**with default**): 1: IR-OSL; 2: BL-OSL}
 
-\item{Dose}{[numeric] or [list] (*with default*): doses in seconds}
+\item{Dose}{[numeric], [list] (**with default**): doses in seconds}
 
-\item{TypLum}{[character] or [list] (*with default*): type of luminescence LIR; LBL; TIR; TBL}
+\item{TypLum}{[character], [list] (**with default**): type of luminescence LIR; LBL; TIR; TBL}
 
-\item{Temp}{[character] or [list] (*with default*): preheat temperature}
+\item{Temp}{[character], [list] (**with default**): preheat temperature}
 
-\item{ph0}{[numeric] (*with default*): selected preheat}
+\item{ph0}{[numeric] (**with default**): selected preheat}
 
-\item{signal.integral}{[vector] (*with default*): vector with the limits for the signal integral.}
+\item{signal.integral}{[vector] (**with default**): vector with the limits for the signal integral.}
 
-\item{background.integral}{[vector] (*with default*): vector with the bounds for the background integral.}
+\item{background.integral}{[vector] (**with default**): vector with the bounds for the background integral.}
 }
 \value{
 a list object with the following items

@@ -21,25 +21,25 @@ analyse.plot(
 )
 }
 \arguments{
-\item{file}{[Risoe.BINfileData-class] or [list] (*required*): BIN/BINX file}
+\item{file}{[Risoe.BINfileData-class],[list] (**required**) the BIN/BINX file(s)}
 
 \item{nom}{[character] (**optional**) BIN/BINX file name}
 
-\item{ech}{[numeric] (*required*): sample number}
+\item{ech}{[numeric] (**with default**) the sample number}
 
-\item{OSL}{[numeric] (*required*): 1: IR-OSL; 2: BL-OSL}
+\item{OSL}{[numeric] (**with default**): 1: IR-OSL; 2: BL-OSL}
 
-\item{Dose}{[numeric] or [list] (*with default*): doses in seconds}
+\item{Dose}{[numeric], [list] (**with default**): doses in seconds}
 
 \item{Unique}{[logical]  (**with default**)  TRUE a single De, independent from preheat temperature}
 
-\item{ph0}{[numeric] (*with default*): selected preheat}
+\item{ph0}{[numeric] (**with default**): selected preheat}
 
 \item{NomEch}{[character] (**optional**) sample name}
 
-\item{signal.integral}{[vector] (*with default*): vector with the limits for the signal integral.}
+\item{signal.integral}{[vector] (**with default**): vector with the limits for the signal integral.}
 
-\item{background.integral}{[vector] (*with default*): vector with the bounds for the background integral.}
+\item{background.integral}{[vector] (**with default**): vector with the bounds for the background integral.}
 
 \item{debug}{if \code{FALSE} (default), \pkg{WinBUGS} is closed automatically
     when the script has finished running, otherwise \pkg{WinBUGS} remains open
