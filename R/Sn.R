@@ -3,15 +3,16 @@
 #'
 #' determines the sensitivity values for OSL
 #'
-#' @param file  [Risoe.BINfileData-class] or [list] (*required*): BIN/BINX file
-#' @param ech [numeric] (*required*): sample number
-#' @param OSL [numeric] (*required*): 1: IR-OSL; 2: BL-OSL
-#' @param Dose [numeric] or [list] (*with default*): doses in seconds
-#' @param TypLum [character] or [list] (*with default*): type of luminescence LIR; LBL; TIR; TBL
-#' @param Temp [character] or [list] (*with default*): preheat temperature
-#' @param ph0 [numeric] (*with default*): selected preheat
-#' @param signal.integral [vector] (*with default*): vector with the limits for the signal integral.
-#' @param background.integral [vector] (*with default*): vector with the bounds for the background integral.
+#' @param file [Risoe.BINfileData-class],[list] (**required**) the BIN/BINX file(s)
+#' @param ech [numeric] (**with default**) the sample number
+#' @param OSL [numeric] (**with default**): 1: IR-OSL; 2: BL-OSL
+#' @param Dose [numeric], [list] (**with default**): doses in seconds
+#' @param TypLum [character], [list] (**with default**): type of luminescence LIR; LBL; TIR; TBL
+#' @param Temp [character], [list] (**with default**): preheat temperature
+#' @param ph0 [numeric] (**with default**): selected preheat
+#' @param signal.integral [vector] (**with default**): vector with the limits for the signal integral.
+#' @param background.integral [vector] (**with default**): vector with the bounds for the background integral.
+#'
 #'
 #' @return a list object with the following items
 #' @return $S [data.frame] efficiency S=Lx/Tx values with uncertainties
@@ -26,7 +27,7 @@
 #' Sn(file,ech=1,OSL=2,Dose=c(0,200,250,300,0,200))
 #'
 `Sn` <-
-function(file,ech,OSL,
+function(file,ech=1,OSL=2,
          Dose=c(0,50,80,110,0,50),
          TypLum=c("LIR","LBL","TIR","TBL"),
          Temp=c("250","275","300","325"),
