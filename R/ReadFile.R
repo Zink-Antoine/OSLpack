@@ -3,15 +3,18 @@
 #' ReadFile
 #' load one or several BIN/BINX files
 #'
-#' @param list name of files list (default "liste fichier.txt")
-#' @param n number of files (default n=1)
+#' @param list [string] (**with default**) name of files list (default "liste fichier.txt")
+#' @param n [numeric] (**with default**) number of files (default n=1)
+#' @param embedData  [logical]  (**with default**)  TRUE (default) retrieves data, otherwise (FALSE) returns only file names
 #'
+#' @return depending on the value of *embedData*
+#' @return TRUE (default value)
 #' @return FILE object of class "list" containing S4 Risoe.BINFileData objects
 #' @return NFILE File name (*.bin/*.binx)
+#' @return FALSE
+#' @return File name (*.bin/*.binx)
 #'
-#' @import Luminescence
-#' @import R2WinBUGS
-#' @import rv
+#' @importFrom Luminescence read_BIN2R
 #' @importFrom tcltk tk_choose.dir
 #'
 #' @export
@@ -26,7 +29,7 @@
 
 
 ReadFile<-function(list="liste fichier.txt"
-,n=1) {
+,n=1 ,embedData=TRUE) {
 
 #choose directory
 Dir<-tk_choose.dir(getwd(), "Choose a suitable folder")
@@ -40,13 +43,17 @@ print(Liste)
 FileBin<-scan("",what=list(""),n)
 FileBin
 
-#load BIN/BINX file
-FileData<-list()
-for (i in 1:n){
-FileData<-c(FileData,read_BIN2R(FileBin[[1]][i]))
-		}
-A<-list(FILE=FileData,NFILE=FileBin)
-return(A)
+if (embedData){
+  #load BIN/BINX file
+  FileData<-list()
+  for (i in 1:n){
+    FileData<-c(FileData,read_BIN2R(FileBin[[1]][i]))
+  }
+  A<-list(FILE=FileData,NFILE=FileBin)
+  return(A)
+}
+else
+  return(FileBin)
 
 }
 
