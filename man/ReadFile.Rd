@@ -5,17 +5,27 @@
 \title{ReadFile
 load one or several BIN/BINX files}
 \usage{
-ReadFile(list = "liste fichier.txt", n = 1)
+ReadFile(list = "liste fichier.txt", n = 1, embedData = TRUE)
 }
 \arguments{
-\item{list}{name of files list (default "liste fichier.txt")}
+\item{list}{[string] (**with default**) name of files list (default "liste fichier.txt")}
 
-\item{n}{number of files (default n=1)}
+\item{n}{[numeric] (**with default**) number of files (default n=1)}
+
+\item{embedData}{[logical]  (**with default**)  TRUE (default) retrieves data, otherwise (FALSE) returns only file names}
 }
 \value{
+depending on the value of *embedData*
+
+TRUE (default value)
+
 FILE object of class "list" containing S4 Risoe.BINFileData objects
 
 NFILE File name (*.bin/*.binx)
+
+FALSE
+
+File name (*.bin/*.binx)
 }
 \description{
 ReadFile
