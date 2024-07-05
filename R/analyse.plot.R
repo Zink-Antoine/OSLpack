@@ -4,7 +4,7 @@
 #'
 #' @inheritParams Sn
 #' @inheritParams GrowthCurve.plot
-#' @param nom  [character] (**optional**) BIN/BINX file name
+#' @param nom  [character] (**optional**) BIN/BINX file name. Use nomFile as global variable
 #' @param NomEch [character] (**optional**) sample name
 #' @param brate [numeric] (**with default**) dose rate of the beta source (default value 0.1 Gy/s)
 #'
@@ -24,7 +24,7 @@
 #' }
 #'
 `analyse.plot` <-
-function(file,nom="nomFile",
+function(file,nom=nomFile,
          ech=1,OSL=2,
          Dose=c(0,30,50,70,0,30),
          Unique=FALSE,
