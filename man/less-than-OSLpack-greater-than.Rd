@@ -2,8 +2,14 @@
 % Please edit documentation in R/OSLpack-package.R
 \docType{package}
 \name{<OSLpack>}
+\alias{OSLpack}
+\alias{OSLpack-package}
 \alias{<OSLpack>}
 \title{OSLpack}
 \description{
 Various function to analyze and plot TL measurement using MCMC code based on Gibbs and Slice samplers.
+}
+\author{
+\strong{Maintainer}: Antoine Zink \email{antoine.zink@culture.gouv.fr} (\href{https://orcid.org/0000-0001-7146-1101}{ORCID})
+
 }

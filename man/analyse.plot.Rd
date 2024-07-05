@@ -6,7 +6,7 @@
 \usage{
 analyse.plot(
   file,
-  nom = "nomFile",
+  nom = nomFile,
   ech = 1,
   OSL = 2,
   Dose = c(0, 30, 50, 70, 0, 30),
@@ -23,7 +23,7 @@ analyse.plot(
 \arguments{
 \item{file}{[Risoe.BINfileData-class],[list] (**required**) the BIN/BINX file(s)}
 
-\item{nom}{[character] (**optional**) BIN/BINX file name}
+\item{nom}{[character] (**optional**) BIN/BINX file name. Use nomFile as global variable}
 
 \item{ech}{[numeric] (**with default**) the sample number}
 
