@@ -28,7 +28,7 @@ function(file,ech=1,OSL=2,Dose=c(0,30,50,70,0,30),nomFile="nomFile",ph0=seq(1,4)
 	ph.nom<-paste(c("250","275","300","325"),"\U00B0","C",sep="")
 	typOSL<-switch(OSL,"IR-","BL-")
 	typOSL2<-switch(OSL,"IRSL","OSL")
-	NumInv<-switch(ech,NumInv[1],NumInv[2],NumInv[3],NumInv[4])
+	NumInv<-NumInv[ech]
 	n.x<-mean(file[[1]]@METADATA$NPOINTS[file[[1]]@METADATA$LTYPE==typOSL2])
 
 	par(fig=c(0,1,0.8,1),mar=c(0,1,1,1))

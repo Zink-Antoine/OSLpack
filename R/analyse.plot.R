@@ -46,7 +46,7 @@ if (!Unique){
 plot(c(0,100), c(0,100), type="n", axes=FALSE,ylab="", xlab="")
 text(50,90,nom)
 TypOSL<-switch(OSL,"IR-OSL","BL-OSL")
-nomEch<-switch(ech,NomEch[1],NomEch[2],NomEch[3],NomEch[4])
+nomEch<-NomEch[ech]
 text(50,70,TypOSL)
 text(50,50,nomEch)
 str1<-paste ("source irradiaton",brate," Gy:s")
