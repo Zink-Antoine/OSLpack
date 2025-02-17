@@ -1,0 +1,103 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "OSLpack",
+  "description": "this package presents Various functions to analyze and plot OSL measurements using Bayesian approach (BUGS code).",
+  "name": "OSLpack: Analyze OSL using Bayesian",
+  "license": "CeCILL-2",
+  "version": "1.0.2",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.3.3 (2024-02-29 ucrt)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Antoine",
+      "familyName": "Zink",
+      "email": "antoine.zink@culture.gouv.fr",
+      "@id": "https://orcid.org/0000-0001-7146-1101"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Antoine",
+      "familyName": "Zink",
+      "email": "antoine.zink@culture.gouv.fr",
+      "@id": "https://orcid.org/0000-0001-7146-1101"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    }
+  ],
+  "softwareRequirements": {
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.5"
+    },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "rv",
+      "name": "rv"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "R2WinBUGS",
+      "name": "R2WinBUGS",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=R2WinBUGS"
+    },
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "Luminescence",
+      "name": "Luminescence",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Luminescence"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "tcltk",
+      "name": "tcltk"
+    },
+    "SystemRequirements": "WinBUGS 1.4 for function BayesCal()"
+  },
+  "fileSize": "190.781KB"
+}
